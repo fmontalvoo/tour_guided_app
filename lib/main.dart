@@ -15,13 +15,11 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: Scaffold(
-        body: ShowCaseWidget(
-          builder: Builder(
-            builder: (context) => HomePage(),
-          ),
-        ),
-      ),
+      initialRoute: 'home',
+      routes: {
+        'home': (context) =>
+            ShowCaseWidget(builder: Builder(builder: (context) => HomePage())),
+      },
     );
   }
 }

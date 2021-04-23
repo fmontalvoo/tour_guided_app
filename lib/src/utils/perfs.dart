@@ -9,7 +9,7 @@ class Prefs {
     if (showShowcase != null) {
       if (showShowcase) return true;
     } else {
-      final status = await preferences.setBool("showShowcase", false);
+      final status = await preferences.setBool("showShowcase", true);
       return status;
     }
     return false;

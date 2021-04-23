@@ -7,8 +7,12 @@ import 'package:tour_guided_app/src/ui/widgets/category_list_item.dart';
 import 'package:tour_guided_app/src/utils/perfs.dart';
 import 'package:tour_guided_app/src/utils/categories.dart';
 
-// ignore: must_be_immutable
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
+  @override
+  _HomePageState createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
   GlobalKey _one = GlobalKey();
   GlobalKey _two = GlobalKey();
   GlobalKey _three = GlobalKey();
@@ -19,17 +23,19 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    _prefs.displayShowcase().then((status) {
-      if (status) {
-        ShowCaseWidget.of(context)
-            .startShowCase([_one, _two, _three, _four, _five]);
-      }
-    });
+    return FutureBuilder<bool>(
+        future: _prefs.displayShowcase(),
+        builder: (context, snapshot) {
+          if (snapshot.hasData) if (snapshot.data)
+            WidgetsBinding.instance.addPostFrameCallback((_) =>
+                ShowCaseWidget.of(context)
+                    .startShowCase([_one, _two, _three, _four, _five]));
 
-    return Scaffold(
-      appBar: appBar(),
-      body: body(),
-    );
+          return Scaffold(
+            appBar: appBar(),
+            body: body(),
+          );
+        });
   }
 
   AppBar appBar() {
