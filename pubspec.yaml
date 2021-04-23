@@ -15,8 +15,8 @@ dependencies:
   cupertino_icons: ^1.0.0
 
   # Dependencias
-  showcaseview: ^0.1.6
-  shared_preferences: ^0.5.12+4
+  showcaseview: ^1.0.0
+  shared_preferences: ^2.0.5
 
 dev_dependencies:
   flutter_test:
